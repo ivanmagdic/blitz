@@ -1,0 +1,29 @@
+{
+    "name": "imagdic/blitz",
+    "description": "Minimal authentication scaffolding with Inertia.js, Vue.js and Tailwind.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ivanmagdic",
+            "email": "magdic.ivan1@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/filesystem": "^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Imagdic\\Blitz\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imagdic\\Blitz\\BlitzServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
