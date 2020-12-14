@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,10 +10,10 @@ Route::get('/', function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('login', [\App\Http\Controllers\Auth\LoginController::class, 'create'])->name('login');
-    Route::post('login', [\App\Http\Controllers\Auth\LoginController::class, 'store'])->name('login.submit');
-    Route::get('register', [\App\Http\Controllers\Auth\RegisterController::class, 'create'])->name('register');
-    Route::post('register', [\App\Http\Controllers\Auth\RegisterController::class, 'store'])->name('register.submit');
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store'])->name('login.submit');
+    Route::get('register', [RegisterController::class, 'create'])->name('register');
+    Route::post('register', [RegisterController::class, 'store'])->name('register.submit');
 });
 
 Route::middleware('auth')->group(function () {
@@ -20,5 +23,13 @@ Route::middleware('auth')->group(function () {
         ]);
     })->name('dashboard');
 
-    Route::post('logout', [\App\Http\Controllers\Auth\LoginController::class, 'destroy'])->name('logout');
+    Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+
+    // Email verification
+    Route::get('verify-email',
+        [EmailVerificationController::class, 'show'])->name('verification.notice');
+    Route::post('verify-email',
+        [EmailVerificationController::class, 'store'])->name('verification.store');
+    Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
 });

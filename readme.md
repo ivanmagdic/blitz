@@ -23,14 +23,17 @@ After successful installation you'll have minimal authentication (Login and Regi
 ![](https://i.imgur.com/3svUtAY.png)
 ![](https://i.imgur.com/Alu9gMz.png)
 
+### Verification
+
+`User` model has to implement `Illuminate\Contracts\Auth\MustVerifyEmail`
+and add `verified` middleware on routes you want to protect.  
+See [Email Verification](https://laravel.com/docs/verification) for more details.
+
 ## Further plans
 
-- Email verification
+- ~~Email verification~~
 - Password reset
 - Extend dashboard page
-
-These upgrades will be optional and can be used by providing certain flags (ex. `--verification`, `--password-reset`, `--admin-dashboard`).  
-Main goal is to keep this package as minimal as it can be and add new features as optional.
 
 
 ## Alternatives
