@@ -19,9 +19,15 @@ class EmailVerificationController extends Controller
      */
     public function show(Request $request)
     {
-        return $request->user()->hasVerifiedEmail()
-            ? redirect()->intended(RouteServiceProvider::HOME)
-            : Inertia::render('Auth/VerifyEmail');
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+        return Inertia::render('Auth/VerifyEmail', [
+            'status' => function () use ($request) {
+                return $request->session()->get('status') ?: (object)[];
+            }
+        ]);
     }
 
     /**
@@ -38,7 +44,7 @@ class EmailVerificationController extends Controller
 
         $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('status', 'verification-link-sent');
+        return back()->with('status', 'Verification link was sent to your email address.');
     }
 
     /**

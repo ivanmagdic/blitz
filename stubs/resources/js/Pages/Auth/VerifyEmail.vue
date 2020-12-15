@@ -6,6 +6,10 @@
             link we just emailed to you? If you didn't receive the email, we will gladly send you another.
         </div>
 
+        <div v-if="status.length" class="mb-4 font-medium text-sm text-green-600">
+            {{ status }}
+        </div>
+
         <form @submit.prevent="submit">
 
             <div class="flex items-center justify-end mt-4">
@@ -27,6 +31,9 @@ import AuthCard from "../../Components/AuthCard";
 export default {
     components: {
         AuthCard
+    },
+    props: {
+        status: Object,
     },
     layout: Layout,
     methods: {
