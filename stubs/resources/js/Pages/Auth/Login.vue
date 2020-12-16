@@ -2,6 +2,10 @@
     <AuthCard>
         <form @submit.prevent="submit">
 
+            <div v-if="status.length" class="mb-4 font-medium text-sm text-green-600">
+                {{ status }}
+            </div>
+
             <div>
                 <label for="email" class="block font-medium text-sm text-gray-700">
                     Email:
@@ -23,14 +27,21 @@
 
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input v-model="form.remember" id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <input v-model="form.remember" id="remember_me" type="checkbox"
+                           class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                           name="remember">
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
+                <inertia-link :href="route('forgot.password')"
+                              class="underline text-sm text-gray-600 hover:text-gray-900">
+                    Forgot your password?
+                </inertia-link>
+
                 <button type="submit"
-                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                        class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                     Login
                 </button>
             </div>
@@ -59,7 +70,9 @@ export default {
     },
     layout: Layout,
     props: {
-        errors: Object
+        status: String,
+        errors: Object,
+        forgot_password_enabled: Boolean,
     },
     data() {
         return {

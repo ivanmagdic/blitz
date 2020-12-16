@@ -17,7 +17,7 @@ class EmailVerificationController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function show(Request $request)
+    public function create(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->intended(RouteServiceProvider::HOME);
