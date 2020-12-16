@@ -20,7 +20,7 @@ For client-side it will install official `Inertia.js` adapter, `Tailwind CSS` an
 After successful installation you'll have minimal authentication (Login and Register).
 
 ![](https://i.imgur.com/7A3hVQz.png)
-![](https://i.imgur.com/3svUtAY.png)
+![](https://i.imgur.com/0u6kEp7.png)
 ![](https://i.imgur.com/Alu9gMz.png)
 
 ### Verification
@@ -32,7 +32,7 @@ See [Email Verification](https://laravel.com/docs/verification) for more details
 ## Further plans
 
 - ~~Email verification~~
-- Password reset
+- ~~Password reset and Forgot password~~
 - Extend dashboard page
 
 
