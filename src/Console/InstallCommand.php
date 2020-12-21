@@ -71,6 +71,9 @@ class InstallCommand extends Command
             resource_path('js/Components'));
         (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/resources/js/Pages', resource_path('js/Pages'));
 
+        // Tests
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/tests/Feature', base_path('tests/Feature'));
+
         $this->info('Blitz scaffolding finished.');
         $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
